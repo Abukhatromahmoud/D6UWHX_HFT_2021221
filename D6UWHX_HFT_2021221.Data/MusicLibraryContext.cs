@@ -10,17 +10,17 @@ namespace D6UWHX_HFT_2021221.Data
 {
 
 
-    public class MusicLibraryDbContext : DbContext
+    public class MusicLibraryContext : DbContext
     {
         public virtual DbSet<Album> Albums { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
 
         public virtual DbSet<Artist> Artists { get; set; }
-        public MusicLibraryDbContext()
+        public MusicLibraryContext()
         {
             
         }
-        public MusicLibraryDbContext(DbContextOptions <MusicLibraryDbContext> options ) : base (options)
+        public MusicLibraryContext(DbContextOptions <MusicLibraryContext> options ) : base (options)
         {
 
         }
