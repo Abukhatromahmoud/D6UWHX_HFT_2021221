@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    interface IAlbumRepository : IRepository<Album>
+    public interface IAlbumRepository : IRepository<Album>
     {
         Album GetByTitle(string title);
     }
