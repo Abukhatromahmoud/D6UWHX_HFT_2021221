@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Logic
 {
-    class ArtistLogic : IArtistLogic
+    public class ArtistLogic : IArtistLogic
     {
         private readonly IArtistRepository _artistRepository;
         public ArtistLogic(IArtistRepository artistRepository)
@@ -16,17 +16,17 @@ namespace D6UWHX_HFT_2021221.Logic
             _artistRepository = artistRepository;
         }
 
-        public void CreatArtist(string name, int age,int albumId , int artistId)
+        public void CreatArtist(string name, int age, int albumId, int artistId)
         {
             Artist artist = new Artist
             {
-                Name = name ,
-                Age = age, 
+                Name = name,
+                Age = age,
                 AlbumID = albumId,
                 ArtistId = artistId
-                
+
             };
-            
+
             _artistRepository.Add(artist);
 
         }
@@ -42,7 +42,7 @@ namespace D6UWHX_HFT_2021221.Logic
             _artistRepository.Delete(artist);
         }
 
-        public  Artist GetArtist(int artistId)
+        public Artist GetArtist(int artistId)
         {
             Artist artist = _artistRepository.GetOne(artistId);
             if (artist == null)
@@ -75,6 +75,18 @@ namespace D6UWHX_HFT_2021221.Logic
 
             _artistRepository.Update(currentArtist);
 
+        }
+        public Artist GetYoungestArtist()
+        {
+            return _artistRepository.GetAll().ToList().OrderBy(x => x.Age).First();
+        }
+        public Artist GetTheOldestArtist()
+        {
+            return _artistRepository.GetAll().ToList().OrderByDescending(x => x.Age).First();
+        }
+        public Artist GetThefirstAgeArtist()
+        {
+            return _artistRepository.GetAll().ToList().OrderByDescending(x => x.Age).First();
         }
     }
 }
