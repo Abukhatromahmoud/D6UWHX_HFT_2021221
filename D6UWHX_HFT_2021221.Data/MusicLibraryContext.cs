@@ -110,7 +110,7 @@ namespace D6UWHX_HFT_2021221.Data
             new Track { TrackId = 10, NamePlace = "Hip-Hop and Rap", Length = 75 },
             new Track { TrackId = 11, NamePlace = "EDM (Electronic Dance Music)", Length =60},
             new Track { TrackId = 12, NamePlace = "Metal", Length = 55 });
-            modelBuilder.Entity<Artist>().HasData(new Artist { ArtistId = 1, Name = "David  ", Age = 40, AlbumID = 1 },
+            modelBuilder.Entity<Artist>().HasData(new Artist { ArtistId = 1, Name = "David", Age = 40, AlbumID = 1 },
             new Artist { ArtistId = 2, Name = "James ", Age = 33, AlbumID = 2 },
             new Artist { ArtistId = 3, Name = "Demi  ", Age = 23, AlbumID = 3 },
             new Artist { ArtistId = 4, Name = "Diana  ", Age = 40, AlbumID = 4 },
