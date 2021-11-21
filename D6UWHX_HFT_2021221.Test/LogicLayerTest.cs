@@ -40,19 +40,20 @@ namespace D6UWHX_HFT_2021221.Test
             }
 
             [Test]
-            public void ArtistAgeTest()
+            public void AlbumObjectThrowsTest()
             {
-                Artist s = new Artist() { Name = "James ", Age = 33 };
-                Assert.That(s.Tracks.Count(), Is.EqualTo(12));
+                Album s = new Album();
+                Assert.That(() => s.CreateInstanceFromString("#SOOLKING%2012"),
+                    Throws.TypeOf<FormatException>());
             }
 
             [Test]
-            public void ArtistNameTest2()
+            public void BrandObjectNotThrowsTest()
             {
-                Artist s = new Artist() { Name = "Demi", Age = 23 };
-                Assert.AreEqual("Demi", s.Name);
+                Album s = new Album();
+                Assert.That(() => s.CreateInstanceFromString("SOOLKING%2012"),
+                    !Throws.TypeOf<FormatException>());
             }
-
         }
     }
 }

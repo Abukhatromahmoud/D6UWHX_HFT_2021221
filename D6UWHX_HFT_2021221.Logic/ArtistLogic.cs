@@ -84,27 +84,6 @@ namespace D6UWHX_HFT_2021221.Logic
         {
             return _artistRepository.GetAll().ToList().OrderByDescending(x => x.Age).First();
         }
-        public IEnumerable<Artist> GetCommentNumberPerArtist()
-        {
-            var qx_sub = from x in _artistRepository.GetAll()
-                         group x by x.ArtistId into g
-                         select new
-                         {
-                             Artist_ID = g.Key,
-                             Artist_No = g.Count()
-                         };
-
-            var qx = from x in _artistRepository.GetAll()
-                     join z in qx_sub on x.ArtistId equals z.Artist_ID
-                     let joinedItem = new { x.ArtistId, x.Name, z.Artist_No }
-                     group joinedItem by joinedItem.Name into grp
-                     select new Artist
-                     {
-                        Name = grp.Key,
-                         ArtistId = grp.Sum(x => x.Artist_No)
-                     };
-
-            return qx;
-        }
+        
     }
 }

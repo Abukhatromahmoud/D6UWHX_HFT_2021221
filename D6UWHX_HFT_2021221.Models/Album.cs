@@ -20,7 +20,11 @@ namespace D6UWHX_HFT_2021221.Models
         
         public virtual ICollection<Track> Tracks { get; set; }
         public virtual  Artist Artist { get; set; }
-        
+        public object CreateInstanceFromString(string v)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
     }
