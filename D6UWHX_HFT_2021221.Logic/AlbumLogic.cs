@@ -67,6 +67,12 @@ namespace D6UWHX_HFT_2021221.Logic
 
             _albumRepository.Update(currentAlbum);
         }
+        public List<Album> GetAlbumRepositoryOrderedByTitle()
+        {
+            return _albumRepository.GetAll()
+                .OrderBy(album => album.Title)
+                .ToList();
+        }
 
-          }
+    }
 }
