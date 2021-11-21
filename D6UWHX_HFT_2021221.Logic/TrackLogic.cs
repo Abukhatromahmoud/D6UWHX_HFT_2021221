@@ -65,5 +65,16 @@ namespace D6UWHX_HFT_2021221.Logic
             currentTrack.NamePlace = track.NamePlace;
             _trackRepository.Update( currentTrack);        
         }
+        public Track GetLongestTrack()
+        {
+            return _trackRepository.GetAll().ToList().OrderByDescending(x => x.Length).First();
+
+        }
+        public Track GetShortestTrack()
+        {
+            return _trackRepository.GetAll().ToList().OrderBy(x => x.Length).First();
+        }
+       
+
     }
-    }
+}
