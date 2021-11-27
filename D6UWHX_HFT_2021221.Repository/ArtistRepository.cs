@@ -8,20 +8,38 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    public class ArtistRepository : Repository<Artist>, IArtistRepository
+    public class ArtistRepository : IArtistRepository
     {
-        public ArtistRepository(MusicLibraryContext musicLibraryContext) : base (musicLibraryContext    )
+        MusicLibraryContext db;
+        public ArtistRepository(MusicLibraryContext db)
         {
-
+            this.db = db;
         }
-
-        public override Artist GetOne(int id)
+        public void Create(Artist artist)
         {
-            return MusicLibraryContext
-                .Artists
-                .SingleOrDefault(artist => artist.ArtistId == id);
-        
+            db.Artists.Add(artist);
+            db.SaveChanges();
         }
-
+        public Artist Read(int Artistid)
+        {
+            return
+                db.Artists.FirstOrDefault(t => t.ArtistId == Artistid);
+        }
+        public IQueryable<Artist> GetAll()
+        {
+            return db.Artists;
+        }
+        public void Delete(int Artistid)
+        {
+            var ArtistToDelete = Read(Artistid);
+            db.Artists.Remove(ArtistToDelete);
+            db.SaveChanges();
+        }
+        public void Update(Artist artist)
+        {
+            var ArtistToUpdate = Read(artist.ArtistId);
+            ArtistToUpdate.Name = artist.Name;
+            db.SaveChanges();
+        }
     }
 }

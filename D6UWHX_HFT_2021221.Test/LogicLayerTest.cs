@@ -21,37 +21,35 @@ namespace D6UWHX_HFT_2021221.Test
             [Test]
             public void TrackNameTest()
             {
-                Track s = new Track() { NamePlace = "ballads", TrackId = 1 };
-                Assert.AreEqual("ballads", s.NamePlace);
+                Track t = new Track() { NamePlace = "ballads", TrackId = 1 };
+                Assert.AreEqual("ballads", t.NamePlace);
             }
-
-            [Test]
-            public void ArtistNameTest()
-            {
-                Artist s = new Artist() { Name = "David", Age = 40 };
-                Assert.AreEqual("David", s.Name);
-            }
-
             [Test]
             public void TrackFirstCharacterTest()
             {
-                Track s = new Track() { NamePlace = "ballads" };
-                Assert.That(s.NamePlace.StartsWith('b'), Is.EqualTo('L'));
+                Track t = new Track() { NamePlace = "ballads" };
+                Assert.That(t.NamePlace.StartsWith('b'), Is.EqualTo('L'));
+            }
+            [Test]
+            public void TrackAlbumTest()
+            {
+                Track t = new Track() { NamePlace="ballads", Length=15};
+                Assert.That(t.Albums.Count(), Is.EqualTo(12));
             }
 
             [Test]
-            public void AlbumObjectThrowsTest()
+            public void TrackObjectThrowsTest()
             {
-                Album s = new Album();
-                Assert.That(() => s.CreateInstanceFromString("#SOOLKING%2012"),
+                Track t = new Track();
+                Assert.That(() => t.CreateInstanceFromString("#EMINEM%2012"),
                     Throws.TypeOf<FormatException>());
             }
 
             [Test]
-            public void BrandObjectNotThrowsTest()
+            public void TrackObjectNotThrowsTest()
             {
-                Album s = new Album();
-                Assert.That(() => s.CreateInstanceFromString("SOOLKING%2012"),
+                Track t = new Track();
+                Assert.That(() => t.CreateInstanceFromString("EMINEM%2012"),
                     !Throws.TypeOf<FormatException>());
             }
         }

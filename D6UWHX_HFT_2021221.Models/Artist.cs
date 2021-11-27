@@ -13,9 +13,8 @@ namespace D6UWHX_HFT_2021221.Models
         public int  ArtistId { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-        public int AlbumID { get; set; }
-        public virtual ICollection <Album> Albums { get; set; }
-        public virtual ICollection <Track> Tracks { get; set; }
+        public virtual Album Album { get; set; }
+        public int? Albumid { get; set; }
 
 
 

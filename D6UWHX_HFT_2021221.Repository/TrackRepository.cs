@@ -8,19 +8,38 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    public class TrackRepository : Repository<Track> , ITrackRepository  
+    public class TrackRepository : ITrackRepository  
     {
-        public TrackRepository(MusicLibraryContext  musicLibraryContext ) : base(musicLibraryContext)
+        MusicLibraryContext db;
+        public TrackRepository(MusicLibraryContext db)
         {
-                
+            this.db = db;
         }
-
-        public override Track GetOne(int id)
+        public void Create(Track track)
         {
-            return MusicLibraryContext
-                .Tracks
-                .SingleOrDefault(x => x.TrackId == id); 
+            db.Tracks.Add(track);
+            db.SaveChanges();
         }
-
+        public Track Read(int Trackid)
+        {
+            return
+                db.Tracks.FirstOrDefault(t => t.TrackId == Trackid);
+        }
+        public IQueryable<Track> GetAll()
+        {
+            return db.Tracks;
+        }
+        public void Delete(int Trackid)
+        {
+            var TrackToDelete = Read(Trackid);
+            db.Tracks.Remove(TrackToDelete);
+            db.SaveChanges();
+        }
+        public void Update(Track track)
+        {
+            var TrackToUpdate = Read(track.TrackId);
+            TrackToUpdate.NamePlace = track.NamePlace;
+            db.SaveChanges();
+        }
     }
 }

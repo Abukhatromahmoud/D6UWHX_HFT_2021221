@@ -8,92 +8,69 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Logic
 {
+    public interface IAlbumLogic
+    {
+        Album GetAlbumById(int Albumid);
+        void CreateNewAlbum(Album album);
+        void DeleteAlbumById(int Albumid);
+        void ChangeAlbum(Album album);
+        IList<Album> GetAllAlbums();
+        double AVGPrice();
+        IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands();
+    }
     public  class AlbumLogic : IAlbumLogic
     {
-        private readonly IAlbumRepository _albumRepository;
-        
-        public AlbumLogic(IAlbumRepository albumRepository)
-        {
-            _albumRepository = albumRepository;
+        IAlbumRepository albumRepo;
 
+        public AlbumLogic(IAlbumRepository AlbumRepo)
+        {
+            this.albumRepo = AlbumRepo;
         }
 
-        public void CreateAlbum(int albumID, string title)
+        public double AVGPrice()
         {
-            Album album = new Album
-            { AlbumID = albumID , Title = title };
-            _albumRepository.Add(album);
-
+            return albumRepo.GetAll()
+                .Average(t => t.BasePrice);
         }
 
-
-        public void DeleteAlbum(int albumID)
+        public IEnumerable<KeyValuePair<string, double>>
+            AVGPriceByBrands()
         {
-           Album album = _albumRepository.GetOne(albumID);
-            
-            if (album == null)
-            {
-                throw new Exception("Not valid album id");
-            }
-
-            _albumRepository.Delete(album);
+            return from x in albumRepo.GetAll()
+                   group x by x.Track.NamePlace into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.BasePrice));
         }
 
-        public Album GetAlbum(int albumID)
+        public void ChangeAlbum(Album album)
         {
-            Album album = _albumRepository.GetOne(albumID);
-            if (album  == null)
-            {
-                throw new Exception("not valid albumId");
-            }
-            return album;
-            
+            albumRepo.Update(album);
         }
 
-        public List<Album> GetAlbums()
+        public void CreateNewAlbum(Album album)
         {
-            return _albumRepository.GetAll()
-                    .ToList();
+            if (album.Title == "" || album.Title == null)
+                throw new NotImplementedException();
+            else
+                albumRepo.Create(album);
         }
 
-        public void UpdateAlbum(Album album)
+        public void DeleteAlbumById(int Albumid)
         {
-            Album currentAlbum = _albumRepository.GetOne(album.AlbumID); 
-            if (currentAlbum == null )
-            {
-                throw new Exception("Not Existing");
-            }
-            currentAlbum.Title = album.Title;
-
-            _albumRepository.Update(currentAlbum);
-        }
-        public List<Album> GetAlbumRepositoryOrderedByTitle()
-        {
-            return _albumRepository.GetAll()
-                .OrderBy(album => album.Title)
-                .ToList();
-        }
-        public IEnumerable<Album> GetAlbumPerCategory()
-        {
-            var qx_sub = from x in _albumRepository.GetAll()
-                         group x by x.AlbumID into g
-                         select new
-                         {
-                             Album_ID = g.Key,
-                             Artist_NO = g.Count()
-                         };
-
-            var qx = from x in _albumRepository.GetAll()
-                     join z in qx_sub on x.AlbumID equals z.Album_ID
-                     let joinedItem = new { x.AlbumID, x.Title, z.Artist_NO }
-                     group joinedItem by joinedItem.Title into grp
-                     select new Album
-                     {
-                         Title = grp.Key
-                     };
-
-            return qx;
+            albumRepo.Delete(Albumid);
         }
 
+        public Album GetAlbumById(int Albumid)
+        {
+            if (Albumid < albumRepo.GetAll().Count())
+                return albumRepo.Read(Albumid);
+            else
+                throw new IndexOutOfRangeException("[ERR] ID Is Unacceptable!");
+        }
+
+        public IList<Album> GetAllAlbums()
+        {
+            return albumRepo.GetAll().ToList();
+        }
     }
 }

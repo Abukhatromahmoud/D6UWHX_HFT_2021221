@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    public interface IAlbumRepository : IRepository<Album>
+    public interface IAlbumRepository
     {
-        Album GetByTitle(string title);
+        void Create(Album albumEvent);
+        void Delete(int Albumid);
+        IQueryable<Album> GetAll();
+        Album Read(int Albumid);
+        void Update(Album AlbumEvent);
     }
 }

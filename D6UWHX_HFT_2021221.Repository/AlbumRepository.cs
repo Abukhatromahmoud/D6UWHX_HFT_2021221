@@ -8,25 +8,38 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    public class AlbumRepository : Repository<Album>, IAlbumRepository
+    public class AlbumRepository : IAlbumRepository
     {
-        public AlbumRepository(MusicLibraryContext MusicLibraryContext) : base (MusicLibraryContext)
+        MusicLibraryContext db;
+        public AlbumRepository(MusicLibraryContext db)
         {
-
+            this.db = db;
         }
-
-        public Album GetByTitle(string title)
+        public void Create(Album album)
         {
-            return MusicLibraryContext
-                 .Albums
-                 .SingleOrDefault(album => album.Title == title);
+            db.Albums.Add(album);
+            db.SaveChanges();
         }
-
-        public override Album GetOne(int id)
+        public Album Read(int Albumid)
         {
-            return MusicLibraryContext
-                 .Albums
-                 .SingleOrDefault(album => album.AlbumID == id);
+            return
+                db.Albums.FirstOrDefault(t => t.AlbumID == Albumid);
+        }
+        public IQueryable<Album> GetAll()
+        {
+            return db.Albums;
+        }
+        public void Delete(int Albumid)
+        {
+            var AlbumToDelete = Read(Albumid);
+            db.Albums.Remove(AlbumToDelete);
+            db.SaveChanges();
+        }
+        public void Update(Album album)
+        {
+            var AlbumToUpdate = Read(album.AlbumID);
+            AlbumToUpdate.Title = album.Title;
+            db.SaveChanges();
         }
     }
 }

@@ -18,15 +18,9 @@ namespace D6UWHX_HFT_2021221.Models
         [MaxLength(200)]
         public string Title { get; set; }
         
-        public virtual ICollection<Track> Tracks { get; set; }
-        public virtual  Artist Artist { get; set; }
-        public object CreateInstanceFromString(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
+        public virtual ICollection<Artist> Artists { get; set; }
+        public Track Track { get; set; }
+        public double BasePrice { get; set; }
     }
 }
 

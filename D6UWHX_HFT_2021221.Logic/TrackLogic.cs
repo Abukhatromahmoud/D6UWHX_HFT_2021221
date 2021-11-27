@@ -8,73 +8,75 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Logic
 {
+    public interface ITrackLogic
+    {
+        Track GetTrackById(int Trackid);
+        void CreateNewTrack(Track track);
+        void DeleteTrackById(int Trackid);
+        void ChangeTrack(Track track);
+        IList<Track> GetAllTracks();
+    }
     public class TrackLogic : ITrackLogic
     {
-        private readonly ITrackRepository _trackRepository;
-        public TrackLogic(ITrackRepository trackRepository)
+        IAlbumRepository albumRepo;
+        ITrackRepository trackRepo;
+
+        public TrackLogic(IAlbumRepository AlbumRepo, ITrackRepository TrackRepo)
         {
-            _trackRepository = trackRepository;
+            this.albumRepo = AlbumRepo;
+            this.trackRepo = TrackRepo;
+        }
+        public void ChangeTrack(Track track)
+        {
+            trackRepo.Update(track);
         }
 
-        public void CreatTrack(int trackId, string namePlace, int length)
+        public void CreateNewTrack(Track track)
         {
-            Track track = new Track
-            {
-                TrackId = trackId,
-                NamePlace = namePlace,
-                Length = length
-
-            };
-            _trackRepository.Add(track);
+            if (track.NamePlace == "" || track.NamePlace== null)
+                throw new NotImplementedException();
+            else
+                trackRepo.Create(track);
         }
 
-        public void DeleteTrack(int trackId)
+        public void DeleteTrackById(int Trackid)
         {
-            Track track = _trackRepository.GetOne(trackId);
-            if (track == null )
-            {
-                throw new Exception("NOt valid Track Id ");
-            }
-            _trackRepository.Delete(track);
+            trackRepo.Delete(Trackid);
         }
 
-        public Track GetTrack(int TrackId)
+        public Track GetTrackById(int Trackid)
         {
-            Track track = _trackRepository.GetOne(TrackId);
-            if (track == null )
-            {
-                throw new Exception("Not Valid Artist Id ");
-            }
-            return track;
+            if (Trackid < trackRepo.GetAll().Count())
+                return trackRepo.Read(Trackid);
+            else
+                throw new IndexOutOfRangeException("[ERR] ID Is Unacceptable!");
         }
 
-        public List<Track> GetTracks()
+        public IList<Track> GetAllTracks()
         {
-            return _trackRepository.GetAll().ToList();
+            return trackRepo.GetAll().ToList();
         }
+        public IEnumerable<Track> GetCommentNumberPerCategory()
+        {
+            var qx_sub = from x in trackRepo.GetAll()
+                         group x by x.AlbumId into g
+                         select new
+                         {
+                             album_ID = g.Key,
+                             track_NO = g.Count()
+                         };
 
-        public void UpdateTrack(Track track )
-        {
-            Track currentTrack = _trackRepository.GetOne(track.TrackId);
-            if (currentTrack == null)
-            {
-                throw new Exception("Not Existing ");
-            }
-            currentTrack.Album = track.Album;
-            currentTrack.Length = track.Length;
-            currentTrack.NamePlace = track.NamePlace;
-            _trackRepository.Update( currentTrack);        
-        }
-        public Track GetLongestTrack()
-        {
-            return _trackRepository.GetAll().ToList().OrderByDescending(x => x.Length).First();
+            var qx = from x in albumRepo.GetAll()
+                     join z in qx_sub on x.AlbumID equals z.album_ID
+                     let joinedItem = new { x.AlbumID, x.Title, z.track_NO }
+                     group joinedItem by joinedItem.Title into grp
+                     select new Track
+                     {
+                         NamePlace = grp.Key,
+                         Length = grp.Sum(x => x.track_NO)
+                     };
 
+            return qx;
         }
-        public Track GetShortestTrack()
-        {
-            return _trackRepository.GetAll().ToList().OrderBy(x => x.Length).First();
-        }
-       
-
     }
 }

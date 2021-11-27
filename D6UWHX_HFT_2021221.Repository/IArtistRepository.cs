@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Repository
 {
-    public interface IArtistRepository : IRepository<Artist>
+    public interface IArtistRepository
     {
+        void Create(Artist ArtistEvent);
+        void Delete(int Artistid);
+        IQueryable<Artist> GetAll();
+        Artist Read(int Artistid);
+        void Update(Artist ArtistEvent);
     }
 }
