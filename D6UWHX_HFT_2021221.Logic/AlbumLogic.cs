@@ -72,5 +72,15 @@ namespace D6UWHX_HFT_2021221.Logic
         {
             return albumRepo.GetAll().ToList();
         }
+        /// <summary>
+        /// ////////////
+        /// </summary>
+        /// <returns></returns>
+        public List<Album> GetAlbumRepositoryOrderedByTitle()
+        {
+            return albumRepo.GetAll()
+                .OrderBy(album => album.Title)
+                .ToList();
+        }
     }
 }
