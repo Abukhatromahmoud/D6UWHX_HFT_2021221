@@ -1,3 +1,6 @@
+using D6UWHX_HFT_2021221.Data;
+using D6UWHX_HFT_2021221.Logic;
+using D6UWHX_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +19,14 @@ namespace D6UWHX_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddTransient<ITrackLogic, TrackLogic>();
+            services.AddTransient<IAlbumLogic, AlbumLogic>();
+            services.AddTransient<ITrackRepository, TrackRepository>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IArtistRepository, ArtistRepository>();
+            services.AddTransient<MusicLibraryContext, MusicLibraryContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
