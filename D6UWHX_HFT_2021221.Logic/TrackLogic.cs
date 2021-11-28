@@ -28,10 +28,7 @@ namespace D6UWHX_HFT_2021221.Logic
             this.trackRepo = TrackRepo;
         }
 
-        public TrackLogic(ITrackRepository @object)
-        {
-            this.@object = @object;
-        }
+        
 
         public void ChangeTrack(Track track)
         {
