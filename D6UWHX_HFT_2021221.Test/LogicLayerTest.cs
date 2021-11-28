@@ -28,14 +28,14 @@ namespace D6UWHX_HFT_2021221.Test
             [Test]
             public void TrackFirstCharacterTest()
             {
-                Track t = new() { NamePlace = "ballads" };
-                Assert.That(t.NamePlace.StartsWith('b'), Is.EqualTo('L'));
+                Track t = new Track { NamePlace = "ballads" };
+                Assert.That(t.NamePlace.First, Is.EqualTo('b'));
             }
             [Test]
             public void TrackAlbumTest()
             {
-                Track t = new() { NamePlace = "ballads", Length = 15 };
-                Assert.That(t.Albums.AsEnumerable(), Is.EqualTo(12));
+                Track t = new Track { NamePlace = "ballads", Length = 15 };
+                Assert.That(t.Length, Is.EqualTo(15));
             }
 
             [Test]
