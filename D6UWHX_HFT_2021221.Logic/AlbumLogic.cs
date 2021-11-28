@@ -27,21 +27,6 @@ namespace D6UWHX_HFT_2021221.Logic
             this.albumRepo = AlbumRepo;
         }
 
-        public double AVGPrice()
-        {
-            return albumRepo.GetAll()
-                .Average(t => t.BasePrice);
-        }
-
-        public IEnumerable<KeyValuePair<string, double>>
-            AVGPriceByBrands()
-        {
-            return from x in albumRepo.GetAll()
-                   group x by x.Track.NamePlace into g
-                   select new KeyValuePair<string, double>
-                   (g.Key, g.Average(t => t.BasePrice));
-        }
-
         public void ChangeAlbum(Album album)
         {
             albumRepo.Update(album);
@@ -72,15 +57,22 @@ namespace D6UWHX_HFT_2021221.Logic
         {
             return albumRepo.GetAll().ToList();
         }
-        /// <summary>
-        /// ////////////
-        /// </summary>
-        /// <returns></returns>
-        public List<Album> GetAlbumRepositoryOrderedByTitle()
+
+        public double AVGPrice()
         {
             return albumRepo.GetAll()
-                .OrderBy(album => album.Title)
-                .ToList();
+                .Average(t => t.BasePrice);
         }
+
+        public IEnumerable<KeyValuePair<string, double>>
+            AVGPriceByBrands()
+        {
+            return from x in albumRepo.GetAll()
+                   group x by x.Track.NamePlace into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.BasePrice));
+        }
+
+
     }
 }

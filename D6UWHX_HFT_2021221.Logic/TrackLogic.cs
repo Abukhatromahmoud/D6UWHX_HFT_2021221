@@ -20,12 +20,19 @@ namespace D6UWHX_HFT_2021221.Logic
     {
         IAlbumRepository albumRepo;
         ITrackRepository trackRepo;
+        private ITrackRepository @object;
 
         public TrackLogic(IAlbumRepository AlbumRepo, ITrackRepository TrackRepo)
         {
             this.albumRepo = AlbumRepo;
             this.trackRepo = TrackRepo;
         }
+
+        public TrackLogic(ITrackRepository @object)
+        {
+            this.@object = @object;
+        }
+
         public void ChangeTrack(Track track)
         {
             trackRepo.Update(track);
@@ -33,7 +40,7 @@ namespace D6UWHX_HFT_2021221.Logic
 
         public void CreateNewTrack(Track track)
         {
-            if (track.NamePlace == "" || track.NamePlace== null)
+            if (track.NamePlace == "" || track.NamePlace == null)
                 throw new NotImplementedException();
             else
                 trackRepo.Create(track);
@@ -56,6 +63,7 @@ namespace D6UWHX_HFT_2021221.Logic
         {
             return trackRepo.GetAll().ToList();
         }
+
         public IEnumerable<Track> GetCommentNumberPerCategory()
         {
             var qx_sub = from x in trackRepo.GetAll()
@@ -75,22 +83,7 @@ namespace D6UWHX_HFT_2021221.Logic
                          NamePlace = grp.Key,
                          Length = grp.Sum(x => x.track_NO)
                      };
-
             return qx;
         }
-        /// <summary>
-     /////////////////////////////
-        /// </summary>
-        /// <returns></returns>
-        public Track GetShortestTrack()
-        {
-            return trackRepo.GetAll().ToList().OrderBy(x => x.Length).First();
-        }
-        public Track GetLongestTrack()
-        {
-            return trackRepo.GetAll().ToList().OrderByDescending(x => x.Length).First();
-
-        }
-
     }
 }

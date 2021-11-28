@@ -10,7 +10,8 @@ namespace  D6UWHX_HFT_2021221.Controllers
 {
     public class StatController : Controller
     {
-        IAlbumLogic a1;
+        
+        readonly IAlbumLogic a1;
         public StatController(IAlbumLogic a1)
         {
             this.a1 = a1;
