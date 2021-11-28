@@ -20,7 +20,7 @@ namespace D6UWHX_HFT_2021221.Logic
     {
         IAlbumRepository albumRepo;
         ITrackRepository trackRepo;
-        private ITrackRepository @object;
+        
 
         public TrackLogic(IAlbumRepository AlbumRepo, ITrackRepository TrackRepo)
         {
