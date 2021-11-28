@@ -17,70 +17,44 @@ namespace D6UWHX_HFT_2021221.Test
         [TestFixture]
         public class TrackTest
         {
-            TrackLogic TLogic;
-
-            [SetUp]
-            public void Init()
+            [Test]
+            public void TrackNameTest()
             {
-                var MockT = new Mock<ITrackRepository>();
-
-                var tracks = new List<Track>()
-
+                Track t = new Track { NamePlace = "ballads", TrackId = 1 };
+                Assert.AreEqual("ballads", t.NamePlace);
+                //var result = TLogic.GetTrackById(1);
+                //Assert.That(result.TrackId, Is.EqualTo("ballads"));
+            }
+            [Test]
+            public void TrackFirstCharacterTest()
             {
-               new Track { TrackId = 1, NamePlace = "Alex", Length = 5},
-                new Track { TrackId = 2, NamePlace = "Sam", Length = 10 },
-                new Track { TrackId = 3, NamePlace = "Clover", Length = 23 }
-            }.AsQueryable();
-
-                MockT.Setup((t) => t.GetAll()).Returns(tracks);
-                for (int i = 0; i < 3; i++)
-                {
-                    MockT.Setup((t) => t.Read(i + 1)).Returns(tracks.ToList()[i]);
-                }
-
-
-
-                TLogic = new TrackLogic(MockT.Object);
-
+                Track t = new() { NamePlace = "ballads" };
+                Assert.That(t.NamePlace.StartsWith('b'), Is.EqualTo('L'));
+            }
+            [Test]
+            public void TrackAlbumTest()
+            {
+                Track t = new() { NamePlace = "ballads", Length = 15 };
+                Assert.That(t.Albums.AsEnumerable(), Is.EqualTo(12));
             }
 
             [Test]
-            public void TestGetTrack()
+            public void TrackObjectThrowsTest()
             {
-
-                var result = TLogic.GetTrackById(3);
-
-                Assert.That(result.NamePlace, Is.EqualTo("Clover"));
-
+                Track t = new();
+                Assert.That(() => t.CreateInstanceFromString("#EMINEM%2012"),
+                    Throws.TypeOf<FormatException>());
             }
 
             [Test]
-            public void TrackNameStartWithTest()
+            public void TrackObjectNotThrowsTest()
             {
-                var resultP = TLogic.GetTrackById(1).NamePlace;
-                Assert.That(resultP.StartsWith("A"), Is.EqualTo("Alexa"));
-
+                Track t = new();
+                Assert.That(() => t.CreateInstanceFromString("EMINEM%2012"),
+                    !Throws.TypeOf<FormatException>());
             }
-
-            [Test]
-            public void GetTrackExceptionTest()
-            {
-                Assert.Throws<Exception>(() => TLogic.GetTrackById(7));
-            }
-
-            [Test]
-            public void RemoveTrackExceptionTest()
-            {
-                Assert.Throws<Exception>(() => TLogic.DeleteTrackById(7));
-            }
-
-            [Test]
-            public void UpdateTrackExceptionTest()
-            {
-                Track Ttest = new Track { NamePlace = "something", Length = 15 };
-                Assert.Throws<Exception>(() => TLogic.ChangeTrack(Ttest));
-            }
-
         }
+
     }
+    
 }
