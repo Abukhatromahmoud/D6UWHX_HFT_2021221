@@ -72,6 +72,12 @@ namespace D6UWHX_HFT_2021221.Logic
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.BasePrice));
         }
+        public List<Album> GetAlbumRepositoryOrderedByTitle()
+        {
+            return albumRepo.GetAll()
+                .OrderBy(album => album.Title)
+                .ToList();
+        }
 
 
     }

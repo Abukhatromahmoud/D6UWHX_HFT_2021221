@@ -85,5 +85,15 @@ namespace D6UWHX_HFT_2021221.Logic
                      };
             return qx;
         }
+        public Track GetLongestTrack()
+        {
+            return trackRepo.GetAll().ToList().OrderByDescending(x => x.Length).First();
+
+        }
+        public Track GetShortestTrack()
+        {
+            return trackRepo.GetAll().ToList().OrderBy(x => x.Length).First();
+        }
+
     }
 }
