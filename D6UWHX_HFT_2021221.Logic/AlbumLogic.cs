@@ -8,64 +8,81 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Logic
 {
-    public interface IAlbumLogic
-    {
-        Album GetAlbumById(int Albumid);
-        void CreateNewAlbum(Album album);
-        void DeleteAlbumById(int Albumid);
-        void ChangeAlbum(Album album);
-        IList<Album> GetAllAlbums();
-        double AVGPrice();
-        IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands();
-    }
     public  class AlbumLogic : IAlbumLogic
     {
-        IAlbumRepository albumRepo;
-
-        public AlbumLogic(IAlbumRepository AlbumRepo)
+        private readonly IAlbumRepository _albumRepository;
+        
+        public AlbumLogic(IAlbumRepository albumRepository)
         {
-            this.albumRepo = AlbumRepo;
+            _albumRepository = albumRepository;
+
         }
 
-        public void ChangeAlbum(Album album)
+        public void CreateAlbum(int albumID, string title)
         {
-            albumRepo.Update(album);
+            Album album = new Album
+            { AlbumID = albumID , Title = title };
+            _albumRepository.Create(album);
+
         }
 
-        public void CreateNewAlbum(Album album)
+        public void DeleteAlbum(int albumID)
         {
-            if (album.Title == "" || album.Title == null)
-                throw new NotImplementedException();
+           Album album = _albumRepository.Read(albumID);
+            
+            if (album == null)
+            {
+                throw new Exception("Not valid album id");
+            }
+
+            _albumRepository.Delete(albumID);
+        }
+
+        public Album GetAlbum(int albumID)
+        {
+            Album album = _albumRepository.Read(albumID);
+            if (album  == null)
+            {
+                throw new Exception("not valid albumId");
+            }
             else
-                albumRepo.Create(album);
+                return album;
+            
         }
 
-        public void DeleteAlbumById(int Albumid)
+        public List<Album> GetAlbums()
         {
-            albumRepo.Delete(Albumid);
+            return _albumRepository.GetAll()
+                    .ToList();
         }
 
-        public Album GetAlbumById(int Albumid)
+        public void UpdateAlbum(Album album)
         {
-            if (Albumid < albumRepo.GetAll().Count())
-                return albumRepo.Read(Albumid);
-            else
-                throw new IndexOutOfRangeException("[ERR] ID Is Unacceptable!");
-        }
+            Album currentAlbum = _albumRepository.Read(album.AlbumID); 
+            if (currentAlbum == null )
+            {
+                throw new Exception("Not Existing");
+            }
+            currentAlbum.Title = album.Title;
 
-        public IList<Album> GetAllAlbums()
+            _albumRepository.Update(currentAlbum);
+        }
+        public List<Album> GetAlbumRepositoryOrderedByTitle()
         {
-            return albumRepo.GetAll().ToList();
+            return _albumRepository.GetAll()
+                .OrderBy(album => album.Title)
+                .ToList();
         }
 
         public double AVGPrice()
         {
-            return albumRepo.GetAll()
+            return _albumRepository.GetAll()
                 .Average(t => t.BasePrice);
         }
+
         public IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands()
         {
-            return from x in albumRepo.GetAll()
+            return from x in _albumRepository.GetAll()
                    group x by x.Track.NamePlace into g
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.BasePrice));

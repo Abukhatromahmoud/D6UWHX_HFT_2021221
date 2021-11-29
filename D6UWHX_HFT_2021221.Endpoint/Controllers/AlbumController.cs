@@ -19,35 +19,35 @@ namespace D6UWHX_HFT_2021221.Controllerspublic
         [HttpGet]
         public IEnumerable<Album> Get()
         {
-            return a1.GetAllAlbums();
+            return a1.GetAlbums();
         }
 
         // GET /brand/5
         [HttpGet("{id}")]
         public Album Get(int AlbumId)
         {
-            return a1.GetAlbumById(AlbumId);
+            return a1.GetAlbum(AlbumId);
         }
 
         // POST /brand
         [HttpPost]
         public void Post([FromBody] Album value)
         {
-            a1.CreateNewAlbum(value);
+            a1.CreateAlbum(value.AlbumID, value.Title);
         }
 
         // PUT /brand
         [HttpPut]
         public void Put([FromBody] Album value)
         {
-            a1.ChangeAlbum(value);
+            a1.UpdateAlbum(value);
         }
 
         // DELETE /brand/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            a1.DeleteAlbumById(id);
+            a1.DeleteAlbum(id);
         }
     }
 }

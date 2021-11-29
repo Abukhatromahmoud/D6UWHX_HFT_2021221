@@ -19,35 +19,35 @@ namespace D6UWHX_HFT_2021221.Controllers
         [HttpGet]
         public IEnumerable<Track> Get()
         {
-            return t1.GetAllTracks();
+            return t1.GetTracks();
         }
 
         // GET /brand/5
         [HttpGet("{id}")]
         public Track Get(int TrackId)
         {
-            return t1.GetTrackById(TrackId);
+            return t1.GetTrack(TrackId);
         }
 
         // POST /brand
         [HttpPost]
         public void Post([FromBody] Track value)
         {
-            t1.CreateNewTrack(value);
+            t1.CreatTrack(value.TrackId, value.NamePlace, value.Length);
         }
 
         // PUT /brand
         [HttpPut]
         public void Put([FromBody] Track value)
         {
-            t1.ChangeTrack(value);
+            t1.UpdateTrack(value);
         }
 
         // DELETE /brand/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            t1.DeleteTrackById(id);
+            t1.DeleteTrack(id);
         }
     }
 }
