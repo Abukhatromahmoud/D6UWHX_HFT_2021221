@@ -23,10 +23,12 @@ namespace D6UWHX_HFT_2021221.Endpoint
 
             services.AddTransient<ITrackLogic, TrackLogic>();
             services.AddTransient<IAlbumLogic, AlbumLogic>();
+            services.AddTransient<IArtistLogic, ArtistLogic>();
+
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<IAlbumRepository, AlbumRepository>();
             services.AddTransient<IArtistRepository, ArtistRepository>();
-            services.AddTransient<MusicLibraryContext, MusicLibraryContext>();
+            services.AddSingleton<MusicLibraryContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
