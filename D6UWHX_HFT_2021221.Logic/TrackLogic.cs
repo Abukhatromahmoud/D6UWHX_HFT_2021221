@@ -20,16 +20,11 @@ namespace D6UWHX_HFT_2021221.Logic
     {
         IAlbumRepository albumRepo;
         ITrackRepository trackRepo;
-        
-
         public TrackLogic(IAlbumRepository AlbumRepo, ITrackRepository TrackRepo)
         {
             this.albumRepo = AlbumRepo;
             this.trackRepo = TrackRepo;
         }
-
-        
-
         public void ChangeTrack(Track track)
         {
             trackRepo.Update(track);
@@ -61,7 +56,7 @@ namespace D6UWHX_HFT_2021221.Logic
             return trackRepo.GetAll().ToList();
         }
 
-        public IEnumerable<Track> GetCommentNumberPerCategory()
+        public IEnumerable<Track> GetTrackNumberPerCategory()
         {
             var qx_sub = from x in trackRepo.GetAll()
                          group x by x.AlbumId into g
@@ -82,15 +77,5 @@ namespace D6UWHX_HFT_2021221.Logic
                      };
             return qx;
         }
-        public Track GetLongestTrack()
-        {
-            return trackRepo.GetAll().ToList().OrderByDescending(x => x.Length).First();
-
-        }
-        public Track GetShortestTrack()
-        {
-            return trackRepo.GetAll().ToList().OrderBy(x => x.Length).First();
-        }
-
     }
 }

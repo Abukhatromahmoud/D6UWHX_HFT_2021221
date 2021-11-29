@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ٌRestService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\D6UWHX_HFT_2021221.Models\D6UWHX_HFT_2021221.Models.csproj" />
   </ItemGroup>
 

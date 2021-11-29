@@ -22,8 +22,6 @@ namespace D6UWHX_HFT_2021221.Test
             {
                 Track t = new Track { NamePlace = "ballads", TrackId = 1 };
                 Assert.AreEqual("ballads", t.NamePlace);
-                //var result = TLogic.GetTrackById(1);
-                //Assert.That(result.TrackId, Is.EqualTo("ballads"));
             }
             [Test]
             public void TrackFirstCharacterTest()
