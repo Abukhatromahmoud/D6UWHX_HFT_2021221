@@ -15,7 +15,7 @@ namespace D6UWHX_HFT_2021221.Client
         {
             System.Threading.Thread.Sleep(8000);
 
-            RestService rest = new RestService("http://localhost:39135");
+            RestService rest = new RestService("http://localhost:7000");
 
             rest.Post<Track>(new Track()
             {
@@ -29,8 +29,8 @@ namespace D6UWHX_HFT_2021221.Client
 
             var avgpricebybrands = rest
                 .Get<KeyValuePair<string, double>>("stat/avgpricebybrands");
-            ///
-            ////
+            
+            //
             MusicLibraryContext mlc = new MusicLibraryContext();
             AlbumRepository albumRepo = new AlbumRepository(mlc);
             TrackRepository trackRepo = new TrackRepository(mlc);
@@ -39,8 +39,29 @@ namespace D6UWHX_HFT_2021221.Client
             AlbumLogic albumLogic = new AlbumLogic(albumRepo);
             ArtistLogic artistLogic = new ArtistLogic(artistRepo);
 
+            var subMenuCustomerCreate = new ConsoleMenu()
+                 .Add(">>ADD A NEW TRACK", () => AddNewTrack(trackLogic))
+                 .Add(">> CREATE A NEW Album", () => AddNewAlbum(albumLogic))
+                 .Add(">> ADD A NEW Artist TO the music", () => AddNewArtist(artistLogic))
+                 .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
+                 .Configure(config =>
+                 {
+                     config.Selector = "--> ";
+                     config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                 });
+            var menu = new ConsoleMenu()
+               .Add(">> ENTER AS A Track", () => subMenuCustomerCreate.Show())
+               .Add(">> EXIT", ConsoleMenu.Close)
+               .Configure(config =>
+               {
+                   config.Selector = "--> ";
+                   config.SelectedItemBackgroundColor = ConsoleColor.Cyan;
+               });
 
-        
+
+            menu.Show();
+
+
         }
         private static void AddNewTrack(TrackLogic tracklogic)
         {
@@ -60,8 +81,46 @@ namespace D6UWHX_HFT_2021221.Client
 
             Console.ReadLine();
         }
-    }
+        private static void AddNewAlbum(AlbumLogic albumlogic)
+        {
+            try
+            {
+                Console.WriteLine("\n:: CREATING A NEW Album ::\n");
+                Console.WriteLine("TYPE THE AlbumId!");
+                int albumID = int.Parse(Console.ReadLine());
+                Album TG = albumlogic.GetAlbum(albumID);
+                Console.WriteLine("\n :: ADDED ::\n");
+                Console.WriteLine(TG.ToString());
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            Console.ReadLine();
+        }
+        private static void AddNewArtist(ArtistLogic artistlogic)
+        {
+            try
+            {
+                Console.WriteLine("\n:: CREATING A NEW Artist ::\n");
+                Console.WriteLine("TYPE THE ArtistId!");
+                int ArtistId = int.Parse(Console.ReadLine());
+                Artist TG = artistlogic.GetArtist(ArtistId);
+                Console.WriteLine("\n :: ADDED ::\n");
+                Console.WriteLine(TG.ToString());
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+    }
     
 }
+
+    
+
 
