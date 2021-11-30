@@ -14,6 +14,7 @@ namespace D6UWHX_HFT_2021221.Endpoint
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
