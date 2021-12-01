@@ -95,12 +95,32 @@ namespace D6UWHX_HFT_2021221.Client
                    config.SelectedItemBackgroundColor = ConsoleColor.DarkYellow;
                });
 
+            var subMenuUpdate = new ConsoleMenu()
+               .Add(">> CHANGE TRACK ID", () => ChangeTrackId( trackLogic))
+               .Add(">> CHANGE ALBUM ID", () => ChangeAlbumID(albumLogic))
+               .Add(">> CHANGE ARTIST ID", () => ChangeArtistID(artistLogic))
+               .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
+               .Configure(config =>
+               {
+                   config.Selector = "--> ";
+                   config.SelectedItemBackgroundColor = ConsoleColor.Green;
+               });
 
+            var subMenuDelete = new ConsoleMenu()
+                .Add(">> DELETE Track", () => DeleteTrack(trackLogic))
+                .Add(">> DELETE Album", () => DeleteAlbum(albumLogic))
+                .Add(">> DELETE Artist", () => DeleteArtist(artistLogic))
+                .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
+                });
             var subMenuMusic = new ConsoleMenu()
             .Add(">> C - CREATE", () => subMenuCreate.Show())
             .Add(">> R - READ", () => subMenuListRead.Show())
-            //.Add(">> U - UPDATE", () => subMenuCompanyUpdate.Show())
-            //.Add(">> D - DELETE", () => subMenuCompanyDelete.Show())
+            .Add(">> U - UPDATE", () => subMenuUpdate.Show())
+            .Add(">> D - DELETE", () => subMenuDelete.Show())
             .Add(">> NON-CRUD - QUERIES", () => subMenuNonCrud.Show())
             .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
             .Configure(config =>
@@ -275,8 +295,146 @@ namespace D6UWHX_HFT_2021221.Client
             var item = artistLogic.GetTheOldestArtist();
             
         }
+        private static void DeleteTrack(TrackLogic trackLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE TRACK TO DELETE THE RECORD ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("\n :: YOU ARE DELETING " + trackLogic.GetTrack(id).TrackId + " ::");
+                trackLogic.DeleteTrack(id);
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("\n :: DELETED ::\n");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            Console.ReadLine();
+        }
+        private static void DeleteAlbum(AlbumLogic albumLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE ALBUM TO DELETE THE RECORD ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("\n :: YOU ARE DELETING " + albumLogic.GetAlbum(id).AlbumID + " ::");
+                albumLogic.DeleteAlbum(id);
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("\n :: DELETED ::\n");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            Console.ReadLine();
+        }
+        private static void DeleteArtist(ArtistLogic artistLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE ARTIST TO DELETE THE RECORD ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("\n :: YOU ARE DELETING " + artistLogic.GetArtist(id).ArtistId + " ::");
+                artistLogic.DeleteArtist(id);
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("\n :: DELETED ::\n");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+        private static void ChangeTrackId(TrackLogic trackLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE TRACK TO UPDATE ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("CURRENT TRACK: " + trackLogic.GetTrack(id).TrackId);
+                Console.WriteLine("\n :: TYPE THE NEW TRACK ID! ::");
+                string trackid = Console.ReadLine();
+                Console.WriteLine("\n :: TYPE THE NEW TRACK! ::");
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("NEW TRACK: " + trackLogic.GetTrack(id).TrackId);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+        private static void ChangeAlbumID (AlbumLogic albumLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE Album TO UPDATE ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("CURRENT TTRACK: " + albumLogic.GetAlbum(id).AlbumID);
+                Console.WriteLine("\n :: TYPE THE NEW Album ID! ::");
+                string trackid = Console.ReadLine();
+                Console.WriteLine("\n :: TYPE THE NEW ALBUM! ::");
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("NEW ALBUM: " + albumLogic.GetAlbum(id).AlbumID);
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+        private static void ChangeArtistID(ArtistLogic artistLogic)
+        {
+            Console.WriteLine("\n:: TYPE THE ID OF THE Artist TO UPDATE ::\n");
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("CURRENT TTRACK: " + artistLogic.GetArtist(id).ArtistId);
+                Console.WriteLine("\n :: TYPE THE NEW Artist ID! ::");
+                string trackid = Console.ReadLine();
+                Console.WriteLine("\n :: TYPE THE NEW Artist! ::");
+                Console.WriteLine("\n :: UPDATING... ::\n");
+                Console.WriteLine("NEW ARTIST: " + artistLogic.GetArtist(id).ArtistId);
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
 
     }
 
