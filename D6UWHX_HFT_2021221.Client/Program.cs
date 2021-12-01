@@ -81,6 +81,19 @@ namespace D6UWHX_HFT_2021221.Client
                    config.Selector = "--> ";
                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
                });
+            var subMenuNonCrud = new ConsoleMenu()
+               .Add(">> Q1 - LIST THE SHORTEST TRACK", () => GetShortestTrack(trackLogic))
+               //.Add(">> Q2 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS", () => ClownEarnings(companyLogic))
+               //.Add(">> Q3 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP", () => NotRecommendedAge(companyLogic))
+               //.Add(">> Q4 - LIST CUSTOMERS' TOTAL SPENDINGS - ASYNC VERSION", () => AsyncOrderPrice(companyLogic))
+               //.Add(">> Q5 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS - ASYNC VERSION", () => AsyncClownEarnings(companyLogic))
+               //.Add(">> Q6 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP - ASYNC VERSION", () => AsyncNotRecommendedAge(companyLogic))
+               .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
+               .Configure(config =>
+               {
+                   config.Selector = "--> ";
+                   config.SelectedItemBackgroundColor = ConsoleColor.DarkYellow;
+               });
 
 
             var subMenuMusic = new ConsoleMenu()
@@ -88,7 +101,7 @@ namespace D6UWHX_HFT_2021221.Client
             //.Add(">> R - READ", () => subMenuCompanyRead.Show())
             //.Add(">> U - UPDATE", () => subMenuCompanyUpdate.Show())
             //.Add(">> D - DELETE", () => subMenuCompanyDelete.Show())
-            //.Add(">> NON-CRUD - QUERIES", () => subMenuCompanyNonCrud.Show())
+            .Add(">> NON-CRUD - QUERIES", () => subMenuNonCrud.Show())
             .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
             .Configure(config =>
             {
