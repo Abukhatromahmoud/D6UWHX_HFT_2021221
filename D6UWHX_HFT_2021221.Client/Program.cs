@@ -82,7 +82,7 @@ namespace D6UWHX_HFT_2021221.Client
                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
                });
             var subMenuNonCrud = new ConsoleMenu()
-               .Add(">> Q1 - LIST THE SHORTEST TRACK", () => GetTheoldestArtist(artistLogic))
+               .Add(">> Q1 - LIST THE LONGEST TRACK", () => GetTheLongestTrack(trackLogic))
                //.Add(">> Q2 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS", () => ClownEarnings(companyLogic))
                //.Add(">> Q3 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP", () => NotRecommendedAge(companyLogic))
                //.Add(">> Q4 - LIST CUSTOMERS' TOTAL SPENDINGS - ASYNC VERSION", () => AsyncOrderPrice(companyLogic))
@@ -431,6 +431,19 @@ namespace D6UWHX_HFT_2021221.Client
             catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void GetTheLongestTrack(TrackLogic trackLogic)
+        {
+            Console.WriteLine("! THIS IS THE LONGEST TRACK !");
+            Console.WriteLine("\n:: LISTING THE NUMBER OF GIGS AND THE TOTAL EARNINGS FOR THE CLOWNS ::\n");
+            var item = trackLogic.GetLongestTrack();
+
+            {
+                Console.WriteLine(item);
             }
 
             Console.ReadLine();
