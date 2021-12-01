@@ -21,7 +21,7 @@ namespace D6UWHX_HFT_2021221.Models
         
         public virtual ICollection<Artist> Artists { get; set; }
         [NotMapped]
-        public Track Track { get; set; }
+        public virtual Track Track { get; set; }
         public double BasePrice { get; set; }
     }
 }
