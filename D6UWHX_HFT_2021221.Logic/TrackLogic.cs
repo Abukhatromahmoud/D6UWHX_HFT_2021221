@@ -10,10 +10,10 @@ namespace D6UWHX_HFT_2021221.Logic
 {
     public class TrackLogic : ITrackLogic
     {
-        private readonly ITrackRepository _trackRepository;
+        private  ITrackRepository _trackRepository;
         public TrackLogic(ITrackRepository trackRepository)
         {
-            _trackRepository = trackRepository;
+            this._trackRepository = trackRepository;
         }
 
         public void CreatTrack(int trackId, string namePlace, int length)
@@ -25,7 +25,7 @@ namespace D6UWHX_HFT_2021221.Logic
                 Length = length
 
             };
-            _trackRepository.Create(track);
+            this. _trackRepository.Create(track);
         }
 
         public void DeleteTrack(int trackId)
@@ -35,7 +35,7 @@ namespace D6UWHX_HFT_2021221.Logic
             {
                 throw new Exception("NOt valid Track Id ");
             }
-            _trackRepository.Delete(trackId);
+            this._trackRepository.Delete(trackId);
         }
 
 
@@ -52,7 +52,7 @@ namespace D6UWHX_HFT_2021221.Logic
 
         public List<Track> GetTracks()
         {
-            return _trackRepository.GetAll().ToList();
+            return this._trackRepository.GetAll().ToList();
         }
 
         public void UpdateTrack(Track track)
@@ -65,16 +65,16 @@ namespace D6UWHX_HFT_2021221.Logic
             currentTrack.AlbumId= track.AlbumId;
             currentTrack.Length = track.Length;
             currentTrack.NamePlace = track.NamePlace;
-            _trackRepository.Update( currentTrack);        
+            this._trackRepository.Update( currentTrack);        
         }
         public Track GetLongestTrack()
         {
-            return _trackRepository.GetAll().ToList().OrderByDescending(x => x.Length).First();
+            return this._trackRepository.GetAll().ToList().OrderByDescending(x => x.Length).First();
 
         }
         public Track GetShortestTrack()
         {
-            return _trackRepository.GetAll().ToList().OrderBy(x => x.Length).First();
+            return this._trackRepository.GetAll().ToList().OrderBy(x => x.Length).First();
         }
     }
 }

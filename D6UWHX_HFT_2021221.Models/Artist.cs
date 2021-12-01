@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace D6UWHX_HFT_2021221.Models
 {
-    [Table("Albums")]
+    [Table("Artist")]
     public class Artist
     {
         [Key]

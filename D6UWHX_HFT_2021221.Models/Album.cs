@@ -10,7 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace D6UWHX_HFT_2021221.Models
 {
-    [Table("Albums")]
+    [Table("Album")]
     public class Album
     {
         [Key]
