@@ -82,7 +82,7 @@ namespace D6UWHX_HFT_2021221.Client
                    config.SelectedItemBackgroundColor = ConsoleColor.Green;
                });
             var subMenuNonCrud = new ConsoleMenu()
-               .Add(">> Q1 - LIST THE SHORTEST TRACK", () => GetShortestTrack(trackLogic))
+               .Add(">> Q1 - LIST THE SHORTEST TRACK", () => GetTheoldestArtist(artistLogic))
                //.Add(">> Q2 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS", () => ClownEarnings(companyLogic))
                //.Add(">> Q3 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP", () => NotRecommendedAge(companyLogic))
                //.Add(">> Q4 - LIST CUSTOMERS' TOTAL SPENDINGS - ASYNC VERSION", () => AsyncOrderPrice(companyLogic))
@@ -269,10 +269,10 @@ namespace D6UWHX_HFT_2021221.Client
 
             Console.ReadLine();
         }
-        private static void GetShortestTrack(TrackLogic trackLogic)
+        private static void GetTheoldestArtist(ArtistLogic artistLogic)
         {
-            Console.WriteLine("\n:: I WILL GIVE YOU THE SHORTEST TRACK ::\n");
-            var item = trackLogic.GetShortestTrack();
+            Console.WriteLine("\n:: I WILL GIVE YOU Oldest Artist::\n");
+            var item = artistLogic.GetTheOldestArtist();
             
         }
 
