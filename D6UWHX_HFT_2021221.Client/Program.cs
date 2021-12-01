@@ -35,7 +35,7 @@ namespace D6UWHX_HFT_2021221.Client
             AlbumRepository albumRepo = new AlbumRepository(mlc);
             TrackRepository trackRepo = new TrackRepository(mlc);
             ArtistRepository artistRepo = new ArtistRepository(mlc);
-            TrackLogic trackLogic = new TrackLogic(trackRepo);
+            TrackLogic trackLogic = new TrackLogic(trackRepo );
             AlbumLogic albumLogic = new AlbumLogic(albumRepo);
             ArtistLogic artistLogic = new ArtistLogic(artistRepo);
 
@@ -98,7 +98,7 @@ namespace D6UWHX_HFT_2021221.Client
 
             var subMenuMusic = new ConsoleMenu()
             .Add(">> C - CREATE", () => subMenuCreate.Show())
-            //.Add(">> R - READ", () => subMenuCompanyRead.Show())
+            .Add(">> R - READ", () => subMenuListRead.Show())
             //.Add(">> U - UPDATE", () => subMenuCompanyUpdate.Show())
             //.Add(">> D - DELETE", () => subMenuCompanyDelete.Show())
             .Add(">> NON-CRUD - QUERIES", () => subMenuNonCrud.Show())
