@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,10 @@ namespace D6UWHX_HFT_2021221.Models
     [Table("Track")]
     public class Track
     {
+        [Key]
         public int TrackId { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string NamePlace { get; set; }
         public int Length { get; set; }
         public int? AlbumId { get; set; }

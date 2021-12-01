@@ -15,10 +15,12 @@ namespace D6UWHX_HFT_2021221.Models
     {
         [Key]
         public int AlbumID { get; set; }
-        [MaxLength(200)]
+        [Required]
+        [MaxLength(100)]
         public string Title { get; set; }
         
         public virtual ICollection<Artist> Artists { get; set; }
+        [NotMapped]
         public Track Track { get; set; }
         public double BasePrice { get; set; }
     }
