@@ -18,13 +18,14 @@ namespace D6UWHX_HFT_2021221.Data
         public virtual DbSet<Artist> Artists { get; set; }
         public MusicLibraryContext()
         {
-            
+           
 
         }
         public MusicLibraryContext(DbContextOptions <MusicLibraryContext> options ) : base (options)
         {
 
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
