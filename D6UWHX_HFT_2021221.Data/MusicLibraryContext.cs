@@ -12,19 +12,21 @@ namespace D6UWHX_HFT_2021221.Data
 
     public class MusicLibraryContext : DbContext
     {
+        public MusicLibraryContext()
+        {
+           // this.Database.EnsureCreated();
+
+        }
         public virtual DbSet<Album> Albums { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
 
         public virtual DbSet<Artist> Artists { get; set; }
-        public MusicLibraryContext()
-        {
-           
-
-        }
+        
         public MusicLibraryContext(DbContextOptions <MusicLibraryContext> options ) : base (options)
         {
-
+           
         }
+        //D:\OneDrive - Óbudai egyetem\obuda computer scince\obuda 3 semester\ADT\New Folder\My prg3 d\D6UWHX_HFT_2021221.Data\Database1.mdf
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,22 +34,23 @@ namespace D6UWHX_HFT_2021221.Data
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(@" Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security = True MultipleActiveResultSets=True");
+                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf; Integrated Security = True");
+                //
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Album
-            Album a1 = new Album { AlbumID = 1, Title = "Mike " };
-            Album a2 = new Album { AlbumID = 2, Title = "Title 1" };
-            Album a3 = new Album { AlbumID = 3, Title = "Title 2 " };
-            Album a4 = new Album { AlbumID = 4, Title = "Title 3  " };
-            Album a5 = new Album { AlbumID = 5, Title = "Title 4  " };
-            Album a6 = new Album { AlbumID = 6, Title = "Title 5 " };
-            Album a7 = new Album { AlbumID = 7, Title = "Title 6 " };
-            Album a8 = new Album { AlbumID = 8, Title = "Title 7 " };
-            Album a9 = new Album { AlbumID = 9, Title = "Title 8 " };
-            Album a10 = new Album { AlbumID = 10, Title = "Title 10 " };
+            Album a1 = new Album { AlbumID = 11, Title = "Mike " };
+            Album a2 = new Album { AlbumID = 22, Title = "Title 1" };
+            Album a3 = new Album { AlbumID = 33, Title = "Title 2 " };
+            Album a4 = new Album { AlbumID = 44, Title = "Title 3  " };
+            Album a5 = new Album { AlbumID = 55, Title = "Title 4  " };
+            Album a6 = new Album { AlbumID = 66, Title = "Title 5 " };
+            Album a7 = new Album { AlbumID = 77, Title = "Title 6 " };
+            Album a8 = new Album { AlbumID = 88, Title = "Title 7 " };
+            Album a9 = new Album { AlbumID = 99, Title = "Title 8 " };
+            Album a10 = new Album { AlbumID = 100, Title = "Title 10 " };
             //Track
             Track t1 = new Track { TrackId = 1, NamePlace = "ballads", Length = 10 };
             Track t2 = new Track { TrackId = 2, NamePlace = "novelty songs", Length = 15 };
@@ -62,17 +65,17 @@ namespace D6UWHX_HFT_2021221.Data
             Track t11 = new Track { TrackId = 11, NamePlace = "EDM (Electronic Dance Music)", Length = 60 };
             Track t12 = new Track { TrackId = 12, NamePlace = "Metal", Length = 55 };
             //Artist
-            Artist ar1 = new Artist { ArtistId = 1, Name = "David", Age = 4 };
-            Artist ar2 = new Artist { ArtistId = 2, Name = "James ", Age = 33};
-            Artist ar3 = new Artist { ArtistId = 3, Name = "Demi  ", Age = 23 };
-            Artist ar4 = new Artist { ArtistId = 4, Name = "Diana  ", Age = 40 };
-            Artist ar5 = new Artist { ArtistId = 5, Name = "Eminem ", Age = 25 };
-            Artist ar6 = new Artist { ArtistId = 6, Name = "Eve ", Age = 40};
-            Artist ar7 = new Artist { ArtistId = 7, Name = "Johnny  ", Age = 27 };
-            Artist ar8 = new Artist { ArtistId = 8, Name = "Mate ", Age = 17 };
-            Artist ar9 = new Artist { ArtistId = 9, Name = " Bill ", Age = 57 };
-            Artist ar10 = new Artist { ArtistId = 10, Name = "Foxy ", Age = 60 };
-            Artist ar11 = new Artist { ArtistId = 11, Name = "Rex ", Age = 33 };
+            Artist ar1 = new Artist { ArtistId = 111, Name = "David", Age = 4 };
+            Artist ar2 = new Artist { ArtistId = 222, Name = "James ", Age = 33};
+            Artist ar3 = new Artist { ArtistId = 333, Name = "Demi  ", Age = 23 };
+            Artist ar4 = new Artist { ArtistId = 444, Name = "Diana  ", Age = 40 };
+            Artist ar5 = new Artist { ArtistId = 555, Name = "Eminem ", Age = 25 };
+            Artist ar6 = new Artist { ArtistId = 666, Name = "Eve ", Age = 40};
+            Artist ar7 = new Artist { ArtistId = 777, Name = "Johnny  ", Age = 27 };
+            Artist ar8 = new Artist { ArtistId = 888, Name = "Mate ", Age = 17 };
+            Artist ar9 = new Artist { ArtistId = 999, Name = " Bill ", Age = 57 };
+            Artist ar10 = new Artist { ArtistId = 1000, Name = "Foxy ", Age = 60 };
+            Artist ar11 = new Artist { ArtistId = 111, Name = "Rex ", Age = 33 };
 
 
             modelBuilder.Entity<Album>(entity =>
