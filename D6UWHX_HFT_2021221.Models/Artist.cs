@@ -13,7 +13,7 @@ namespace D6UWHX_HFT_2021221.Models
     public class Artist
     {
         [Key]
-        public int  ArtistId { get; set; }
+        public int ArtistId { get; set; }
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -21,6 +21,7 @@ namespace D6UWHX_HFT_2021221.Models
         [NotMapped]
         public virtual Album Album { get; set; }
         public int? Albumid { get; set; }
+
 
 
 

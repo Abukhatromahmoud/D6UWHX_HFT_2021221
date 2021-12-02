@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace D6UWHX_HFT_2021221.Models
 {
+
     [Table("Album")]
     public class Album
     {
@@ -18,13 +19,16 @@ namespace D6UWHX_HFT_2021221.Models
         [Required]
         [MaxLength(100)]
         public string Title { get; set; }
-        
+
         public virtual ICollection<Artist> Artists { get; set; }
         [NotMapped]
         public virtual Track Track { get; set; }
         public double BasePrice { get; set; }
     }
-}
+    }
+
+
+
 
   
 
