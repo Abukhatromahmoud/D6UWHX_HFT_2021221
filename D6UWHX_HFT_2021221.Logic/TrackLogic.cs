@@ -10,7 +10,7 @@ namespace D6UWHX_HFT_2021221.Logic
 {
     public class TrackLogic : ITrackLogic
     {
-        private  ITrackRepository _trackRepository;
+         private   ITrackRepository _trackRepository;
         public TrackLogic(ITrackRepository trackRepository)
         {
             this._trackRepository = trackRepository;

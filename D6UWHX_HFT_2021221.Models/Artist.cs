@@ -13,6 +13,8 @@ namespace D6UWHX_HFT_2021221.Models
     public class Artist
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ArtistId { get; set; }
         [Required]
         [MaxLength(100)]
@@ -20,7 +22,11 @@ namespace D6UWHX_HFT_2021221.Models
         public int Age { get; set; }
         [NotMapped]
         public virtual Album Album { get; set; }
+       
         public int? Albumid { get; set; }
+       
+    
+
 
 
 

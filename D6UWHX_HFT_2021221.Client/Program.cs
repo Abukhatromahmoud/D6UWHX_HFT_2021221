@@ -29,9 +29,9 @@ namespace D6UWHX_HFT_2021221.Client
 
             //var avgpricebybrands = rest
             //    .Get<KeyValuePair<string, double>>("stat/avgpricebybrands");
-            
+
             //
-            MusicLibraryContext mlc = new MusicLibraryContext();
+               MusicLibraryContext mlc = new MusicLibraryContext();
             AlbumRepository albumRepo = new AlbumRepository(mlc);
             TrackRepository trackRepo = new TrackRepository(mlc);
             ArtistRepository artistRepo = new ArtistRepository(mlc);

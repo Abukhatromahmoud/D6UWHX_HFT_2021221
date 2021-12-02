@@ -12,6 +12,7 @@ namespace D6UWHX_HFT_2021221.Models
     public class Track
     {
         [Key]
+           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TrackId { get; set; }
         [Required]
         [MaxLength(100)]
