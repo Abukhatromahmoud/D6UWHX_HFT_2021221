@@ -19,6 +19,6 @@ namespace D6UWHX_HFT_2021221.Logic
 
         void DeleteAlbum(int albumID);
         double AVGPrice();
-        IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands();
+        IEnumerable<KeyValuePair<string, double>> AVGPriceByAlbums();
     }
 }

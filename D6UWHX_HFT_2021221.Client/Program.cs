@@ -83,11 +83,10 @@ namespace D6UWHX_HFT_2021221.Client
                });
             var subMenuNonCrud = new ConsoleMenu()
                .Add(">> Q1 - LIST THE LONGEST TRACK", () => GetTheLongestTrack(trackLogic))
-               //.Add(">> Q2 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS", () => ClownEarnings(companyLogic))
-               //.Add(">> Q3 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP", () => NotRecommendedAge(companyLogic))
-               //.Add(">> Q4 - LIST CUSTOMERS' TOTAL SPENDINGS - ASYNC VERSION", () => AsyncOrderPrice(companyLogic))
-               //.Add(">> Q5 - LIST CLOWNS' EARNINGS AND NUMBER OF GIGS - ASYNC VERSION", () => AsyncClownEarnings(companyLogic))
-               //.Add(">> Q6 - LIST CUSTOMERS WHO DID NOT SEE THE RECOMMENDED AGE GAP - ASYNC VERSION", () => AsyncNotRecommendedAge(companyLogic))
+               .Add(">> Q2 - LIST THE Shortest TRACK", () => GetTheShortestTrack(trackLogic))
+               
+               
+               
                .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
                .Configure(config =>
                {
@@ -439,8 +438,19 @@ namespace D6UWHX_HFT_2021221.Client
         private static void GetTheLongestTrack(TrackLogic trackLogic)
         {
             Console.WriteLine("! THIS IS THE LONGEST TRACK !");
-            Console.WriteLine("\n:: LISTING THE NUMBER OF GIGS AND THE TOTAL EARNINGS FOR THE CLOWNS ::\n");
+           
             var item = trackLogic.GetLongestTrack();
+
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+        private static void GetTheShortestTrack(TrackLogic trackLogic)
+        {
+            Console.WriteLine("! THIS IS THE SHORTEST TRACK !");
+            var item = trackLogic.GetShortestTrack();
 
             {
                 Console.WriteLine(item);

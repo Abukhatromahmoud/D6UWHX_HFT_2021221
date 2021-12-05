@@ -12,13 +12,19 @@ namespace D6UWHX_HFT_2021221.Models
     public class Track
     {
         [Key]
-           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TrackId { get; set; }
         [Required]
         [MaxLength(100)]
         public string NamePlace { get; set; }
+        
+        [Required]
         public int Length { get; set; }
+       
+        [ForeignKey(nameof(Album))]
         public int? AlbumId { get; set; }
+        
+        [NotMapped]
         public virtual ICollection<Album> Albums { get; set; }
 
 
@@ -31,6 +37,10 @@ namespace D6UWHX_HFT_2021221.Models
                 this.NamePlace = input.Split('%')[0];
                 this.Length = int.Parse(input.Split('%')[1]);
             }
+        }
+        public override string ToString()
+        {
+            return $"\n{this.TrackId,3} | {this.NamePlace,-20} {this.Length,-28}  ";
         }
         //fdsfdgdfgdsfghdf
     }

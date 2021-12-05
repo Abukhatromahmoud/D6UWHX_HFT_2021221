@@ -80,7 +80,7 @@ namespace D6UWHX_HFT_2021221.Logic
                 .Average(t => t.BasePrice);
         }
 
-        public IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands()
+        public IEnumerable<KeyValuePair<string, double>> AVGPriceByAlbums()
         {
             return from x in _albumRepository.GetAll()
                    group x by x.Track.NamePlace into g

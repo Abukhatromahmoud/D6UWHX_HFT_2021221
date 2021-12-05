@@ -28,7 +28,7 @@ namespace  D6UWHX_HFT_2021221.Controllers
         [HttpGet]
         public IEnumerable<KeyValuePair<string, double>> AVGPriceByBrands()
         {
-            return a1.AVGPriceByBrands();
+            return a1.AVGPriceByAlbums();
         }
     }
 }
