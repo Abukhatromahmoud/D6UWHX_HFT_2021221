@@ -37,7 +37,7 @@ namespace D6UWHX_HFT_2021221.Models
         public double BasePrice { get; set; }
         public override string ToString()
         {
-            return $"\n{this.AlbumID,3} | {this.Title,-20} {this.BasePrice,-28}   ";
+            return $"\n{this.AlbumID,3} | {this.Title,-20} {this.BasePrice,-28} {this.Artists?.Count,5}  ";
         }
     }
     }

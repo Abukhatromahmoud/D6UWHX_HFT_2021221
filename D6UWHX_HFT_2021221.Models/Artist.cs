@@ -31,7 +31,7 @@ namespace D6UWHX_HFT_2021221.Models
 
         public override string ToString()
         {
-            return $"\n{this.ArtistId,3} | {this.Name,-20} {this.Age,-28} {this.Album,5} {this.Albumid,6} ";
+            return $"\n{this.ArtistId,3} | {this.Name,-20} {this.Age,-28} {this.Album,5} {this.Album?.Title ?? "N/A",-40 } {this.Albumid,6} ";
 
         }
     }

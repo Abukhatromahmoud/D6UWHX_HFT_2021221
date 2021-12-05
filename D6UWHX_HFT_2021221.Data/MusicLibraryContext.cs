@@ -66,17 +66,17 @@ namespace D6UWHX_HFT_2021221.Data
             Track t11 = new Track() { TrackId = 11, NamePlace = "EDM (Electronic Dance Music)", Length = 60 };
             Track t12 = new Track() { TrackId = 12, NamePlace = "Metal", Length = 55 };
             //Artist
-            Artist ar1 = new Artist() { ArtistId = 1118, Name = "David", Age = 4 };
-            Artist ar2 = new Artist() { ArtistId = 222, Name = "James ", Age = 33 };
-            Artist ar3 = new Artist() { ArtistId = 333, Name = "Demi  ", Age = 23};
-            Artist ar4 = new Artist() { ArtistId = 444, Name = "Diana  ", Age = 40};
-            Artist ar5 = new Artist() { ArtistId = 555, Name = "Eminem ", Age = 25 };
-            Artist ar6 = new Artist() { ArtistId = 666, Name = "Eve ", Age = 40 };
-            Artist ar7 = new Artist() { ArtistId = 777, Name = "Johnny  ", Age = 27 };
-            Artist ar8 = new Artist() { ArtistId = 888, Name = "Mate ", Age = 17};
-            Artist ar9 = new Artist() { ArtistId = 999, Name = " Bill ", Age = 57};
-            Artist ar10 = new Artist() { ArtistId = 1000, Name = "Foxy ", Age = 60};
-            Artist ar11 = new Artist() { ArtistId = 111, Name = "Rex ", Age = 33 };
+            Artist ar1 = new Artist() { ArtistId = 1118, Name = "David", Age = 4 , Albumid = 11};
+            Artist ar2 = new Artist() { ArtistId = 222, Name = "James ", Age = 33, Albumid = 11 };
+            Artist ar3 = new Artist() { ArtistId = 333, Name = "Demi  ", Age = 23, Albumid = 11 };
+            Artist ar4 = new Artist() { ArtistId = 444, Name = "Diana  ", Age = 40, Albumid = 11 };
+            Artist ar5 = new Artist() { ArtistId = 555, Name = "Eminem ", Age = 25, Albumid = 11 };
+            Artist ar6 = new Artist() { ArtistId = 666, Name = "Eve ", Age = 40, Albumid = 11 };
+            Artist ar7 = new Artist() { ArtistId = 777, Name = "Johnny  ", Age = 27, Albumid = 11 };
+            Artist ar8 = new Artist() { ArtistId = 888, Name = "Mate ", Age = 17, Albumid = 11 };
+            Artist ar9 = new Artist() { ArtistId = 999, Name = " Bill ", Age = 57, Albumid = 11 };
+            Artist ar10 = new Artist() { ArtistId = 1000, Name = "Foxy ", Age = 60, Albumid = 11 };
+            Artist ar11 = new Artist() { ArtistId = 111, Name = "Rex ", Age = 33, Albumid = 11 };
 
 
             //modelBuilder.Entity<Album>(entity =>

@@ -40,7 +40,7 @@ namespace D6UWHX_HFT_2021221.Models
         }
         public override string ToString()
         {
-            return $"\n{this.TrackId,3} | {this.NamePlace,-20} {this.Length,-28}  ";
+            return $"\n{this.TrackId,3} | {this.NamePlace,-20} {this.Length,-28} {this.Albums?.Count,5} ";
         }
         //fdsfdgdfgdsfghdf
     }
