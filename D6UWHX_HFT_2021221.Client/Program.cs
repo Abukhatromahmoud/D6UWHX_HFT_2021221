@@ -83,10 +83,12 @@ namespace D6UWHX_HFT_2021221.Client
                });
             var subMenuNonCrud = new ConsoleMenu()
                .Add(">> Q1 - LIST THE LONGEST TRACK", () => GetTheLongestTrack(trackLogic))
-               .Add(">> Q2 - LIST THE Shortest TRACK", () => GetTheShortestTrack(trackLogic))
-               
-               
-               
+               .Add(">> Q2 - LIST THE Shortest TRACK", () => GetTheShortestTrack(trackLogic)).Add(">> Q3 - LIST THE LAST TRACK", () => GivemeTheLastTrack_(trackLogic))
+               .Add(">> Q4 - LIST THE LAST TRACK with Name Place", () => GiveMeTheLastTrackWithNamePlace_(trackLogic))
+               .Add(">> Q5 - LIST THE LAST TRACK with Id", () => GiveMeTheLastTrackWithId_(trackLogic))
+
+
+
                .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
                .Configure(config =>
                {
@@ -458,7 +460,41 @@ namespace D6UWHX_HFT_2021221.Client
 
             Console.ReadLine();
         }
+        private static void GivemeTheLastTrack_(TrackLogic trackLogic)
+        {
+            Console.WriteLine("! THIS IS THE LAST TRACK !");
+            var item = trackLogic.GiveMeTheLastTrack();
 
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+        private static void GiveMeTheLastTrackWithNamePlace_(TrackLogic trackLogic)
+        {
+
+            Console.WriteLine("!Give Me TheLast Track With NamePlace!");
+            var item = trackLogic.GiveMeTheLastTrackWithNamePlace();
+
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+        private static void GiveMeTheLastTrackWithId_(TrackLogic trackLogic)
+        {
+
+            Console.WriteLine("!Give Me TheLast Track With ID!");
+            var item = trackLogic.GiveMeTheLastTrackWithID();
+
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
     }
 
 }
