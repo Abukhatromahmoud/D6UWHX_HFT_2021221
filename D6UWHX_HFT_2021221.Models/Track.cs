@@ -11,7 +11,6 @@ namespace D6UWHX_HFT_2021221.Models
     [Table("Track")]
     public class Track
     {
-        //
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TrackId { get; set; }

@@ -78,7 +78,7 @@ namespace D6UWHX_HFT_2021221.Logic
         }
         public Track GiveMeTheLastTrack()
         {
-            return this._trackRepository.GetAll().ToList().OrderBy(x=>x.Length).Last();
+            return this._trackRepository.GetAll().ToList().OrderBy(x => x.Length).Last();
         }
         public Track GiveMeTheLastTrackWithNamePlace()
         {
@@ -88,6 +88,5 @@ namespace D6UWHX_HFT_2021221.Logic
         {
             return this._trackRepository.GetAll().ToList().OrderByDescending(x => x.TrackId).Last();
         }
-
     }
 }

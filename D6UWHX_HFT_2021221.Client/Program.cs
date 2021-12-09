@@ -31,11 +31,11 @@ namespace D6UWHX_HFT_2021221.Client
             //    .Get<KeyValuePair<string, double>>("stat/avgpricebybrands");
 
             //
-               MusicLibraryContext mlc = new MusicLibraryContext();
+            MusicLibraryContext mlc = new MusicLibraryContext();
             AlbumRepository albumRepo = new AlbumRepository(mlc);
             TrackRepository trackRepo = new TrackRepository(mlc);
             ArtistRepository artistRepo = new ArtistRepository(mlc);
-            TrackLogic trackLogic = new TrackLogic(trackRepo );
+            TrackLogic trackLogic = new TrackLogic(trackRepo);
             AlbumLogic albumLogic = new AlbumLogic(albumRepo);
             ArtistLogic artistLogic = new ArtistLogic(artistRepo);
 
@@ -97,7 +97,7 @@ namespace D6UWHX_HFT_2021221.Client
                });
 
             var subMenuUpdate = new ConsoleMenu()
-               .Add(">> CHANGE TRACK ID", () => ChangeTrackId( trackLogic))
+               .Add(">> CHANGE TRACK ID", () => ChangeTrackId(trackLogic))
                .Add(">> CHANGE ALBUM ID", () => ChangeAlbumID(albumLogic))
                .Add(">> CHANGE ARTIST ID", () => ChangeArtistID(artistLogic))
                .Add(">> GO BACK TO MENU", ConsoleMenu.Close)
@@ -134,7 +134,7 @@ namespace D6UWHX_HFT_2021221.Client
 
             var menu = new ConsoleMenu()
               .Add(">> ENTER AS A VISITOR ", () => subMenuMusic.Show())
-              
+
               .Add(">> EXIT", ConsoleMenu.Close)
               .Configure(config =>
               {
@@ -204,7 +204,7 @@ namespace D6UWHX_HFT_2021221.Client
         {
             Console.WriteLine("\n:: ALL Tracks ::\n");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            
+
             Console.ResetColor();
             trackLogic.GetTracks().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.ReadLine();
@@ -294,7 +294,7 @@ namespace D6UWHX_HFT_2021221.Client
         {
             Console.WriteLine("\n:: I WILL GIVE YOU Oldest Artist::\n");
             var item = artistLogic.GetTheOldestArtist();
-            
+
         }
         private static void DeleteTrack(TrackLogic trackLogic)
         {
@@ -386,7 +386,7 @@ namespace D6UWHX_HFT_2021221.Client
 
             Console.ReadLine();
         }
-        private static void ChangeAlbumID (AlbumLogic albumLogic)
+        private static void ChangeAlbumID(AlbumLogic albumLogic)
         {
             Console.WriteLine("\n:: TYPE THE ID OF THE Album TO UPDATE ::\n");
             try
@@ -440,7 +440,7 @@ namespace D6UWHX_HFT_2021221.Client
         private static void GetTheLongestTrack(TrackLogic trackLogic)
         {
             Console.WriteLine("! THIS IS THE LONGEST TRACK !");
-           
+
             var item = trackLogic.GetLongestTrack();
 
             {
@@ -495,6 +495,7 @@ namespace D6UWHX_HFT_2021221.Client
 
             Console.ReadLine();
         }
+
     }
 
 }
