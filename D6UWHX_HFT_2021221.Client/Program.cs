@@ -15,16 +15,8 @@ namespace D6UWHX_HFT_2021221.Client
         {
             RestService rest = new RestService("http://localhost:5000");
 
-   
 
-
-
-
-
-
-
-
-
+            List<Track> tracks = rest.Get<Track>("track");
 
 
 
