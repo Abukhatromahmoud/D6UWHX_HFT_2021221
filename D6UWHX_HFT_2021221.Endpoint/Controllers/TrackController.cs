@@ -7,8 +7,10 @@ using D6UWHX_HFT_2021221.Logic;
 using D6UWHX_HFT_2021221.Models;
 
 namespace D6UWHX_HFT_2021221.Controllers
-{
-	public class TrackController : Controller
+{        [ApiController]
+    [Route("[controller]")]
+
+	public class TrackController 
 	{
 		ITrackLogic t1;
 		public TrackController(ITrackLogic t1)

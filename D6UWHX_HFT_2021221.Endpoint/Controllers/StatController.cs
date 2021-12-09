@@ -8,6 +8,8 @@ using D6UWHX_HFT_2021221.Models;
 
 namespace  D6UWHX_HFT_2021221.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class StatController : Controller
     {
         

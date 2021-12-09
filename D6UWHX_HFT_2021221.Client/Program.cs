@@ -13,24 +13,23 @@ namespace D6UWHX_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            //System.Threading.Thread.Sleep(8000);
+            RestService rest = new RestService("http://localhost:5000");
 
-            //RestService rest = new RestService("https://go.microsoft.com/fwlink/?LinkID=398940");
+   
 
-            //rest.Post<Track>(new Track()
-            //{
-            //    NamePlace = "ballads"
-            //}, "ballads");
 
-            //var tracks = rest.Get<Track>("novelty songs");
-            //var tracks1 = rest.Get<Track>("rock");
 
-            //double avgprice = rest.GetSingle<double>("stat/avgprice");
 
-            //var avgpricebybrands = rest
-            //    .Get<KeyValuePair<string, double>>("stat/avgpricebybrands");
 
-            //
+
+
+
+
+
+
+
+
+
             MusicLibraryContext mlc = new MusicLibraryContext();
             AlbumRepository albumRepo = new AlbumRepository(mlc);
             TrackRepository trackRepo = new TrackRepository(mlc);
