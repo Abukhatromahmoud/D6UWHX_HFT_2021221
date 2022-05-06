@@ -55,7 +55,7 @@ namespace D6UWHX_HFT_2021221.Logic
             return _albumRepository.GetAll()
                     .ToList();
         }
-
+        //da
         public void UpdateAlbum(Album album)
         {
             Album currentAlbum = _albumRepository.Read(album.AlbumID); 
