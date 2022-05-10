@@ -98,26 +98,26 @@ namespace D6UWHX_HFT_2021221.WpfClient
             return Artists.ToList();
         }
 
+        //For Album
         public ICommand CreateAlbumCommand { get; set; }
 
         public ICommand DeleteAlbumCommand { get; set; }
 
         public ICommand UpdateAlbumCommand { get; set; }
 
-
+        //For Artist
         public ICommand CreateArtistCommand { get; set; }
 
         public ICommand DeleteArtistCommand { get; set; }
 
         public ICommand UpdateArtistCommand { get; set; }
 
+        //For Track
         public ICommand CreateTrackCommand { get; set; }
 
         public ICommand DeleteTrackCommand { get; set; }
 
         public ICommand UpdateTrackCommand { get; set; }
-
-        
 
         public static bool IsInDesignMode
         {
