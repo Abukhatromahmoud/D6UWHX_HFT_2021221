@@ -15,5 +15,6 @@ namespace D6UWHX_HFT_2021221.Logic
         //AlbumID
         void UpdateArtist(Artist artist);
         void DeleteArtist(int ArtistId);
+       
     }
 }

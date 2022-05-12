@@ -60,12 +60,14 @@ namespace D6UWHX_HFT_2021221.Endpoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "D6UWHX_HFT_2021221.EndPoint v1"));
             }
             app.UseCors(x => x
                 .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:39135"));
+                .WithOrigins("http://localhost:36254"));
 
             app.UseExceptionHandler(c => c.Run(async context =>
             {

@@ -42,9 +42,9 @@ namespace D6UWHX_HFT_2021221.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Album
-            Album a1 = new Album() { AlbumID = 11, Title = "Title 1 " , TracktID = 1 };
+            Album a1 = new Album() { AlbumID = 11, Title = "Title 1" , TracktID = 1 };
             Album a2 = new Album() { AlbumID = 22, Title = "Title 2", TracktID = 1 };
-            Album a3 = new Album() { AlbumID = 33, Title = "Title 3 ", TracktID = 1 };
+            Album a3 = new Album() { AlbumID = 33, Title = "Title 3", TracktID = 1 };
             Album a4 = new Album() { AlbumID = 44, Title = "Title 4  ", TracktID = 1 };
             Album a5 = new Album() { AlbumID = 55, Title = "Title 5  ", TracktID = 1 };
             Album a6 = new Album() { AlbumID = 66, Title = "Title 6 ", TracktID = 1 };
